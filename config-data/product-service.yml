@@ -1,11 +1,18 @@
+#Application Configuration
+server:
+  port: 8091
+  error:
+    include-message: always
+    include-binding-errors: always
+
 spring:
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     url: jdbc:postgresql://localhost:5432/springpostgre
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
