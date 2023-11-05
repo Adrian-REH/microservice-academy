@@ -9,5 +9,14 @@ spring:
   boot:
     admin:
       client:
+        enabled: true
         url: http://localhost:8086
-
+        username: root
+        password: s3cr3tAdmin
+        instance:
+          metadata:
+            tags:
+              environment: development
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
