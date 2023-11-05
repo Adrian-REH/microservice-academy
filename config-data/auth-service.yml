@@ -34,6 +34,4 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: http://localhost:8099/eureka/
-      username: root
-      password: s3cr3tEureka
+      defaultZone: http://root:s3cr3tEureka@localhost:8099/eureka/
