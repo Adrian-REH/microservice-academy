@@ -10,3 +10,5 @@ spring:
     admin:
       client:
         url: http://localhost:8086
+        username: root
+        password: s3cr3tAdmin
