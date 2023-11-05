@@ -10,6 +10,7 @@ import service.demo.store.authservice.repository.AuthUserRepository;
 import service.demo.store.authservice.security.JwtProvider;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class AuthUserService {
@@ -27,11 +28,12 @@ public class AuthUserService {
 
         Optional<AuthUser> user = authUserRepository.findByUserName(userDto.getUserName());
 
-        if (user.isEmpty())
+        if (user.isPresent())
             return null;
 
         String password = passwordEncoder.encode(userDto.getPassword());
         AuthUser authUser = AuthUser.builder()
+                .id(UUID.randomUUID().toString())
                 .userName(userDto.getUserName())
                 .password(password)
                 .build();
