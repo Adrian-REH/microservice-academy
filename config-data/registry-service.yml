@@ -5,8 +5,10 @@ server:
 eureka:
   instance:
     hostname: localhost
+    user: root
+    password: s3cr3tEureka
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl: 
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.user}:${eureka.instance.password}@${eureka.instance.hostname}:${server.port}/eureka/
