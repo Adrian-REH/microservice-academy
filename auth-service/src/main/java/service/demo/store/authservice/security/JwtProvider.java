@@ -23,7 +23,7 @@ public class JwtProvider {
 
     public String createToken(AuthUser authUser){
         Map<String, Object> claims = new HashMap<String, Object>();
-        claims = Jwts.claims().setSubject(authUser.getId());
+        claims = Jwts.claims().setSubject(authUser.getUserName());
 
         claims.put("id",authUser.getId());
         Date now = new Date();
