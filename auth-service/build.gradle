@@ -8,7 +8,7 @@ group = 'service.demo.store'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '11'
+	sourceCompatibility = '17'
 }
 
 configurations {
@@ -23,38 +23,34 @@ repositories {
 
 ext {
 	set('springBootAdminVersion', "2.7.4")
-
 	set('springCloudVersion', "2021.0.8")
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'de.codecentric:spring-boot-admin-starter-client'
+	implementation('org.springframework.cloud:spring-cloud-starter-bootstrap')
+	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	compileOnly 'org.projectlombok:lombok'
-	implementation('org.springframework.cloud:spring-cloud-starter-bootstrap')
-	implementation 'de.codecentric:spring-boot-admin-starter-client'
-
-	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-
-
-
 	runtimeOnly 'org.postgresql:postgresql'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
-	testImplementation 'junit:junit:4.13.1'
-
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 dependencyManagement {
 	imports {
 		mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
-
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
 }

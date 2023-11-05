@@ -1,0 +1,37 @@
+#Application Configuration
+server:
+  port: 8095
+  error:
+    include-message: always
+    include-binding-errors: always
+app:
+  jwt:
+    expiration-ms: 86400000
+
+jwt:
+  token:
+    validity: 18000
+    prefix: Bearer
+  signing:
+    key: ${SECURITY_KEY_0001:signingkey}
+  authorities:
+    key: roles
+  header:
+    string: Authorization
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springpostgre
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8099/eureka/
