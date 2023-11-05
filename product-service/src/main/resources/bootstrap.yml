@@ -1,6 +1,10 @@
 spring:
   application:
     name: product-service
+  security:
+    user:
+      name: client
+      password: client
   cloud:
     config:
       uri: http://localhost:8081
@@ -10,3 +14,7 @@ spring:
     admin:
       client:
         url: http://localhost:8086
+        instance:
+          metadata-user:
+            name: ${spring.security.user.name}
+            password: ${spring.security.user.password}

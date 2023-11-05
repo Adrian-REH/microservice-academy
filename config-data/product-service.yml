@@ -24,3 +24,8 @@ eureka:
     register-with-eureka: true
     serviceUrl:
       defaultZone: http://localhost:8099/eureka/
+  instance:
+    preferIpAddress: true
+    metadata-map:
+      user.name: client
+      user.password: client
