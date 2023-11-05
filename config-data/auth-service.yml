@@ -31,7 +31,12 @@ spring:
     driver-class-name: org.postgresql.Driver
 eureka:
   client:
-    fetch-registry: true
-    register-with-eureka: true
     serviceUrl:
-      defaultZone: http://root:s3cr3tEureka@localhost:8099/eureka/
+      defaultZone: http://localhost:8099/eureka
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    preferIpAddress: true
+    metadata-map:
+      user.name: root
+      user.password: s3cr3tEureka
