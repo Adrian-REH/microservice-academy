@@ -1,6 +1,14 @@
 server:
   port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 eureka:
   client:
     healthcheck:
@@ -9,9 +17,6 @@ eureka:
     register-with-eureka: true
     serviceUrl:
       defaultZone: http://root:s3cr3tEureka@localhost:8099/eureka/
-  instance:
-    preferIpAddress: true
-
 spring:
   cloud:
     gateway:
