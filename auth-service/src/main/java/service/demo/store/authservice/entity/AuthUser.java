@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,10 +16,11 @@ import javax.persistence.Table;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tbl_authservice",schema = "security")
+@Table(name = "tbl_authuser",schema = "security")
 public class AuthUser {
     @Id
     private String id;
+    @Column(name = "user_name")
     private String userName;
     private String password;
 

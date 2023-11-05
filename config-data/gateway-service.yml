@@ -17,6 +17,8 @@ spring:
           uri: lb://customer-service
           predicates:
             - Path=/customers/**
+          filter: 
+            - AuthFilter
         - id: product-service
           uri: lb://product-service
           predicates:
