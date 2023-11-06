@@ -9,18 +9,14 @@ server:
 # http://localhost:8092/h2-console
 # Enabling H2 Console
 spring:
-  h2:
-    console:
-      enabled: true
   # ===============================
   # DB
   # ===============================
   datasource:
-    url: jdbc:h2:mem:customerDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driverClassName: org.h2.Driver
-    platform: h2
-    username: sa
-    password:
+    url: jdbc:postgresql://localhost:5432/springpostgre
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: admin
 
   # ===============================
   # JPA / HIBERNATE
@@ -29,7 +25,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties:
       hibernate:
         show_sql: true
@@ -41,7 +37,7 @@ logging:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8099/eureka/
+      defaultZone: http://root:s3cr3tEureka@localhost:8099/eureka/
 management:
   endpoints:
     web:
