@@ -11,6 +11,8 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import service.demo.store.gatewayservice.filter.domain.dto.TokenDto;
 
+import java.util.Base64;
+
 @Component
 public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> {
 
@@ -42,10 +44,20 @@ public class AuthFilter extends AbstractGatewayFilterFactory<AuthFilter.Config> 
                     .post()
                     .uri("lb://auth-service/auth/validate/" + chunks[1] )
                     .retrieve().bodyToMono(TokenDto.class)
-                    .map(t -> {
-                        t.getToken();
-                        return exchange;
-                    }).flatMap(chain::filter);
+                    .flatMap(t -> {
+
+                        if (t.getToken()!=null){
+                            //Luego de verificar que el token esta bien, renueva el header Auth para agregar el codigo de acceso a los microservicios.
+                            String basicAuth = "client:client"; // Cambia por tus propias credenciales
+                            String encodedBasicAuth = Base64.getEncoder().encodeToString(basicAuth.getBytes());
+                            exchange.getRequest().mutate().header(HttpHeaders.AUTHORIZATION, "Basic " + encodedBasicAuth);
+
+                            return chain.filter(exchange);
+
+                        }
+                        return onError(exchange, HttpStatus.BAD_REQUEST);
+
+                    });
 
         })));
     }
