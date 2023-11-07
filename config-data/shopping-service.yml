@@ -1,6 +1,6 @@
 #Application Configuration
 server:
-  port: 8091
+  port: 8093
   error:
     include-message: always
     include-binding-errors: always
