@@ -41,7 +41,6 @@ spring:
           predicates:
             - Path=/invoices/**
           filters:
-            - SetRequestHeader=Authorization, Basic dXNlcjpwYXNzd29yZA==
             - AuthFilter
         - id: auth-service
           uri: lb://auth-service
