@@ -40,7 +40,8 @@ spring:
           uri: lb://shopping-service
           predicates:
             - Path=/invoices/**
-          filters: 
+          filters:
+            - SetRequestHeader=Authorization, Basic dXNlcjpwYXNzd29yZA==
             - AuthFilter
         - id: auth-service
           uri: lb://auth-service
