@@ -2,7 +2,7 @@
 
 include 'customer-service'
 include 'product-service'
-//include 'shopping-service'
+include 'shopping-service'
 include 'config-service'
 include 'discover-service'
 include 'gateway-service'

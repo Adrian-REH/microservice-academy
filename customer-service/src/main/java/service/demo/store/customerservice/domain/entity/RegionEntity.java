@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "tbl_regions")
+@Table(name = "tbl_regions", schema="products")
 public class RegionEntity {
     @Id
     private String id;

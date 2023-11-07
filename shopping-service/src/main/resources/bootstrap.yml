@@ -1,0 +1,31 @@
+management:
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  application:
+    name: shopping-service
+  security:
+    user:
+      name: client
+      password: client
+  cloud:
+    config:
+      uri: http://localhost:8081
+      username: root
+      password: s3cr3t
+  boot:
+    admin:
+      client:
+        enabled: true
+        url: http://localhost:8086
+        username: root
+        password: s3cr3tAdmin
+        instance:
+          metadata:
+            tags:
+              environment: development
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
