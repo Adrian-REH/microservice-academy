@@ -43,6 +43,6 @@ spring:
           filters:
             - AuthFilter
         - id: auth-service
-          uri: lb://auth-service
+          uri: auth-service
           predicates:
             - Path=/auth/**
