@@ -1,0 +1,53 @@
+# CONFIG SERVICE
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: admin-service
+  name: admin-service
+  namespace: default
+spec:
+  selector:
+    app: admin-service
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: docker-port #puerto interno
+      nodePort: 30386
+  #sessionAffinity: si es None no mantiene la sesion, si es ClientIP mantiene la sesion para el usuario con la ip
+  sessionAffinity: None
+  type: NodePort
+
+---
+# CONFIG DEPLOYMENT
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: admin-service
+  name: admin-service
+  namespace: default
+spec:
+  replicas: 1 #CHANGE
+  revisionHistoryLimit: 5
+  minReadySeconds: 120
+  selector:
+    matchLabels:
+      app: admin-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: admin-service
+    spec:
+      containers:
+        - name: admin-service
+          image: admin-image:1.0
+          ports:
+            - name: docker-port
+              containerPort: 8086
+
