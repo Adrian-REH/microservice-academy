@@ -13,5 +13,5 @@ spring:
           default-label: "main"
   security:
     user:
-      name: root
-      password: s3cr3t  
+      name: ${USERNAME_CONFIG:root}
+      password: ${SECRET_CONFIG:s3cr3t}

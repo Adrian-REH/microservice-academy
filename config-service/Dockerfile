@@ -9,7 +9,7 @@ WORKDIR /app
 COPY ${projectDir}/build/libs/*-SNAPSHOT.jar /app/app.jar
 
 # Expone el puerto 8060
-EXPOSE 8060
+EXPOSE 8081
 
 # Define el comando de inicio del contenedor
 CMD ["java", "-jar", "app.jar"]
