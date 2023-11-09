@@ -23,7 +23,7 @@ spring:
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:postgresql://localhost:5432/springpostgre
+    url: jdbc:postgresql://${DB_HOSTNAME}:5432/springpostgre
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
@@ -31,11 +31,6 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://root:s3cr3tEureka@localhost:8099/eureka
+      defaultZone: http://${USERNAME_EUREKA:root}:${SECRET_EUREKA:s3cr3tEureka}@${HOSTNAME_EUREKA}:8099/eureka/
     register-with-eureka: true
     registry-fetch-interval-seconds: 5
-  instance:
-    preferIpAddress: true
-    metadata-map:
-      user.name: root
-      user.password: s3cr3tEureka
