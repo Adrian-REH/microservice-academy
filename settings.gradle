@@ -1,11 +1,11 @@
 
 
+include 'config-service'
+include 'discover-service'
+include 'admin-service'
+include 'gateway-service'
+include 'auth-service'
 include 'customer-service'
 include 'product-service'
 include 'shopping-service'
-include 'config-service'
-include 'discover-service'
-include 'gateway-service'
-include 'auth-service'
-include 'admin-service'
 rootProject.name = 'microservice-academy'
