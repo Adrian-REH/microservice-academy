@@ -1,0 +1,31 @@
+management:
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  application:
+    name: shopping-service
+  security:
+    user:
+      name: client
+      password: client
+  cloud:
+    config:
+      uri: http://${HOSTNAME_CONFIG}:${PORT_CONFIG:8081}
+      username: ${USERNAME_CONFIG:root}
+      password: ${SECRET_CONFIG:s3cr3t}
+  boot:
+    admin:
+      client:
+        enabled: true
+        url: http://${HOSTNAME_ADMIN}:${PORT_ADMIN:8086}
+        username: ${USERNAME_ADMIN:root}
+        password: ${SECRET_ADMIN:s3cr3tAdmin}
+        instance:
+          metadata:
+            tags:
+              environment: development
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
