@@ -17,7 +17,21 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: admin
-
+  boot:
+    admin:
+      client:
+        enabled: true
+        url: http://${HOSTNAME_ADMIN}:${PORT_ADMIN:8086}
+        username: ${USERNAME_ADMIN:root}
+        password: ${SECRET_ADMIN:s3cr3tAdmin}
+        instance:
+          prefer-ip: true
+          metadata:
+            tags:
+              environment: development
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
   # ===============================
   # JPA / HIBERNATE
   # ===============================
