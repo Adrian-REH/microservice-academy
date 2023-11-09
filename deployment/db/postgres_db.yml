@@ -1,0 +1,101 @@
+# PersistentVolumeClaim para PostgreSQL
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 0.5Gi  # Tamaño del almacenamiento que deseas asignar
+
+---
+
+# Deployment de PostgreSQL
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: postgres-db
+  name: postgres-db
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-db
+  template:
+    metadata:
+      labels:
+        app: postgres-db
+    spec:
+      containers:
+        - name: postgres-db
+          image: postgres:latest
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: admin
+            - name: POSTGRES_DB
+              value: springpostgre
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgres-persistent-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-persistent-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc  # Nombre del PVC que creamos anteriormente
+
+---
+
+# Service de PostgreSQL (etiquetas y puertos corregidos para PostgreSQL)
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: postgres-db
+  name: postgres-db
+  namespace: default
+spec:
+  ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    app: postgres-db  # Selector para PostgreSQL
+
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /path/to/host/folder
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  volumes:
+    - name: my-pv-volume
+      persistentVolumeClaim:
+        claimName: my-pvc
+  containers:
+    - name: my-container
+      image: nginx
+      volumeMounts:
+        - mountPath: /path/in/container
+          name: my-pv-volume
