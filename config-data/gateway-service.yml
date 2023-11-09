@@ -14,9 +14,12 @@ eureka:
     healthcheck:
       enabled: true
     fetch-registry: true
-    register-with-eureka: true
     serviceUrl:
       defaultZone: http://${USERNAME_EUREKA:root}:${SECRET_EUREKA:s3cr3tEureka}@${HOSTNAME_EUREKA}:8099/eureka/
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    preferIpAddress: true
 spring:
   cloud:
     gateway:

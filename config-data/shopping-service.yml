@@ -34,8 +34,19 @@ logging:
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
 eureka:
   client:
+    healthcheck:
+      enabled: true
+    fetch-registry: true
     serviceUrl:
-      defaultZone: http://root:s3cr3tEureka@localhost:8099/eureka/
+      defaultZone: http://${USERNAME_EUREKA:root}:${SECRET_EUREKA:s3cr3tEureka}@${HOSTNAME_EUREKA}:8099/eureka/
+    register-with-eureka: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    preferIpAddress: true
+    metadata-map:
+      user.name: client
+      user.password: client
+
 Feign:
   hystrix:
     enabled: true

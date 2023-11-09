@@ -39,3 +39,6 @@ eureka:
     registry-fetch-interval-seconds: 5
   instance:
     preferIpAddress: true
+    metadata-map:
+      user.name: client
+      user.password: client
