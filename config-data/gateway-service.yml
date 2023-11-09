@@ -16,7 +16,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: http://root:s3cr3tEureka@localhost:8099/eureka/
+      defaultZone: http://${USERNAME_EUREKA:root}:${SECRET_EUREKA:s3cr3tEureka}@${HOSTNAME_EUREKA}:8099/eureka/
 spring:
   cloud:
     gateway:

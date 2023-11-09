@@ -4,7 +4,7 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${BASE_HOSTNAME}
   client:
     healthcheck:
       enabled: true
