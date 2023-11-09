@@ -13,7 +13,7 @@ spring:
   # DB
   # ===============================
   datasource:
-    url: jdbc:postgresql://localhost:5432/springpostgre
+    url: jdbc:postgresql://${DB_HOSTNAME}:5432/springpostgre
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: admin

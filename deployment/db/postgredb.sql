@@ -59,8 +59,7 @@ INSERT INTO
         region_id,
         state
     )
-VALUES
-(
+VALUES (
         1,
         '32404580',
         'Andrés',
@@ -183,8 +182,7 @@ INSERT INTO
         create_at,
         state
     )
-VALUES
-(
+VALUES (
         1,
         '0001',
         'invoice office items',
@@ -213,8 +211,7 @@ INSERT INTO
         quantity,
         price
     )
-VALUES
-('affdokk', 1, 1, 1, 178.89);
+VALUES ('affdokk', 1, 1, 1, 178.89);
 
 INSERT INTO
     products.tbl_invoice_items (
@@ -224,8 +221,7 @@ INSERT INTO
         quantity,
         price
     )
-VALUES
-('fcapok', 1, 2, 2, 12.5);
+VALUES ('fcapok', 1, 2, 2, 12.5);
 
 INSERT INTO
     products.tbl_invoice_items (
@@ -235,5 +231,4 @@ INSERT INTO
         quantity,
         price
     )
-VALUES
-('pdlafs', 1, 3, 1, 40.06);
+VALUES ('pdlafs', 1, 3, 1, 40.06);
