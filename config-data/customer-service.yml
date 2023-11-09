@@ -13,7 +13,7 @@ spring:
   # DB
   # ===============================
   datasource:
-    url: jdbc:postgresql://localhost:5432/springpostgre
+    url: jdbc:postgresql://${DB_HOSTNAME}:5432/springpostgre
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: admin
@@ -37,7 +37,7 @@ logging:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://root:s3cr3tEureka@localhost:8099/eureka/
+      defaultZone: http://${USERNAME_EUREKA:root}:${SECRET_EUREKA:s3cr3tEureka}@${HOSTNAME_EUREKA}:8099/eureka/
 management:
   endpoints:
     web:
