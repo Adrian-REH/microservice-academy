@@ -1,3 +1,4 @@
+
 # PersistentVolumeClaim para PostgreSQL
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -11,7 +12,6 @@ spec:
       storage: 0.5Gi  # Tamaño del almacenamiento que deseas asignar
 
 ---
-
 # Deployment de PostgreSQL
 apiVersion: apps/v1
 kind: Deployment
@@ -71,6 +71,7 @@ spec:
 
 
 ---
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -83,19 +84,3 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   hostPath:
     path: /path/to/host/folder
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: my-pod
-spec:
-  volumes:
-    - name: my-pv-volume
-      persistentVolumeClaim:
-        claimName: my-pvc
-  containers:
-    - name: my-container
-      image: nginx
-      volumeMounts:
-        - mountPath: /path/in/container
-          name: my-pv-volume

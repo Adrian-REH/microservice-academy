@@ -51,7 +51,7 @@ spec:
             - name: SECRET_CONFIG
               value: "s3cr3t"
             - name: GIT_USER
-              value: "dEfter@2313"
+              value: ""
             - name: GIT_PASSWORD
               value: "adrianherrera.r.e@gmail.com"
 
