@@ -38,7 +38,7 @@ En caso de que un microservicio se caiga Hystrix me devuelve un dato ficticio, t
 
 ## Microservicio de Infraestructura
 
-## Config
+### Config
 
 Es encargado de versionar y actualizar la configuracion de cada microservicio.
 **Dependencias**
@@ -46,14 +46,14 @@ Es encargado de versionar y actualizar la configuracion de cada microservicio.
 1. spring-cloud-config-server
 2. spring-boot-starter-security ???
 
-## Admin
+### Admin
 
 Administra los microservicios de Negocio
 **Dependencias**
 
 1. spring-boot-admin-starter-server
 
-## Eureka
+### Discovery - Eureka
 
 Para que Gateway pueda comunicarse con el resto de microservicio los descubro con eureka
 **Dependencias**
@@ -62,7 +62,7 @@ Para que Gateway pueda comunicarse con el resto de microservicio los descubro co
 2. spring-cloud-starter-netflix-eureka-server
 3. add bootstrap
 
-## Gateway
+### Gateway
 
 Es necesario filtrar la comunicacion y redirigir la peticion adecuada al lugar adecuado por ende esta este microservicio.
 Comunicandose por webSocket con Auth-service para que ese filtrado sea satisfactorio, devolviendo las credenciales para autorizar la comunicacion entre microservicios.
